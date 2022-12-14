@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from 
+
+from .models import Badge
 
 # Create your forms here.
 class NewUserForm(UserCreationForm):
@@ -17,3 +18,11 @@ class NewUserForm(UserCreationForm):
 		if commit:
 			user.save()
 		return user
+
+
+# ---------------- Badge add form ------- #
+class BadgeAddForm(forms.ModelForm):
+
+	class Meta:
+		model = Badge
+		fields = "__all__"

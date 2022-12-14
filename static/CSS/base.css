@@ -1,3 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;800&family=Rubik+80s+Fade&display=swap');
+
 body{
-    background-color: aquamarine;
+    background-color: rgb(255, 239, 227);
+    margin: 0;
+    padding: 0;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(249, 103, 51);
+    outline: 1px solid rgba(248, 99, 30, 0);
+}
+
+header .headdiv{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+    padding:  5rem 2rem 5rem 2rem;
+}
+
+.headdiv .title{
+    font-size: 2rem;
+    color:rgb(20, 19, 18);
+    /* font-family: 'Rubik 80s Fade', cursive; */
+    font-family: 'Open Sans', sans-serif;
+}
+
+.title p{
+    font-size: 1.4rem;
+    color: rgb(232, 122, 5);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+.extra{
+    font-size: 1.6rem;
+}
+
+.headdiv .logo img{
+    filter: drop-shadow(20px 10px 10px #000000);
+    transition: .1s;
+}
+
+.headdiv .logo img:hover{
+    filter: drop-shadow(0px 0px 0px #ffffff);
 }

@@ -1,14 +1,12 @@
 {% load static %}
-<h1>Bas epage</h1>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'CSS/base.css' %}">
-
-    {% block head %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    {% block style %}
     {% endblock %}
     
     
@@ -16,6 +14,21 @@
 </head>
 <body>
 
+    <header>
+        <div class="headdiv">
+            <div class="title">
+                <h1>Badge Repo</h1>
+                <p>Store your certificates, badges and other achievement info now on AWS cloud through <span class="extra">Badge Repo</span> </p>
+            </div>
+
+            <div class="logo">
+                <img src="https://2147222-demo1.s3.amazonaws.com/ribbon-removebg-preview.png" alt="" >
+            </div>
+        </div>
+        
+    </header>
+
+    
     {% block content %}
     {% endblock %}
     

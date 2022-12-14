@@ -1,12 +1,60 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
 
+{% block style%}
 
-{% block head %}
-<title>index page</title>
+<link rel="stylesheet" href="{% static 'CSS/index.css' %}">
 {% endblock %}
 
 
 {% block content %}
-<h1>index page</h1>
+
+<section class="content">
+
+    <div class="badgelist">
+        {% for each in badgelist %}
+        <div class="badge">
+            <div class="leftside">
+                <h2>{{ each.badge_name }}</h2>
+                <h5>{{ each.badge_type }}</h5>
+                <h5>issued on {{ each.badge_upload_datetime }}</h5>
+                <h5><a href="{{each.badge_url}}">view link</a></h5> 
+            </div>
+
+            <div class="rightside">
+                <h2 class="crosstext">{{each.id}}</h2>
+                <a href="{% url 'deleteBadgeUrl' each.id %}" class="imgbtn"><i class="material-icons" style="font-size:30px;color:rgb(253, 252, 252);">delete</i></a>
+                <a href="{% url 'displayBadgeUrl' each.id %}" class="imgbtn"><i class="material-icons" style="font-size:30px;color:rgb(254, 248, 248);">image</i></a>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="section2">
+        <div class="addform">
+            <div class="logo">
+                <img src="https://2147222-demo1.s3.amazonaws.com/form-removebg-preview.png" alt="" >
+            </div>
+        </div>
+
+        <div class="addform">
+            <header>
+                <h2>Add New Badge</h2>
+            </header>
+            <form action="" method="POST"  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form|crispy}}
+                {{form.errors}}
+                <input class="submitbtn" type="submit">
+            </form>
+        </div>
+    </div>
+    
+
+    
+
+</section>
 
 {% endblock content %}

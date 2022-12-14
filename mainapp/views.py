@@ -3,10 +3,26 @@ from .forms import NewUserForm
 from django.contrib.auth import login, authenticate ,logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm #add this
+from django.shortcuts import get_object_or_404
 
-# Create your views here.
+from .forms import BadgeAddForm
+from .models import Badge
+
+# -------------- Home page and also listing badges here ------ #
 def homePageFunc(request):
-    return render(request,'index.html')
+	badgelist = Badge.objects.all()
+
+	form = BadgeAddForm(request.POST, request.FILES)
+	if form.is_valid():
+		form.save()
+		messages.success(request,"Badge added successfully!")
+		print("added")
+	else:
+		messages.error(request,"Cannot add badge!")
+		print("not added")
+		
+	context = {"form":form,'badgelist':badgelist}
+	return render(request,'index.html', context)
 
 
 def registerFunc(request):
@@ -43,3 +59,23 @@ def logoutFunc(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.") 
 	return redirect("homeUrl")
+
+def addBadgeFunc(request):
+	form = BadgeAddForm(request.POST, request.FILES)
+	if form.is_valid():
+		form.save()
+		messages.success(request,"Badge added successfully!")
+		return redirect('homeUrl')
+
+	context = {"form":form}
+	return render(request, "addbadge.html" ,context) 
+
+def displayBadgeFunc(request, pkid):
+	pic = get_object_or_404(Badge, id=pkid)
+	context = {"pic":pic}
+	return render(request, "badgedisplay.html", context)
+
+def deleteBadgeFunc(request, pkid):
+	data = get_object_or_404(Badge, id=pkid) 
+	data.delete()
+	return redirect('homeUrl')
